@@ -80,4 +80,36 @@ public class TicTacToeTest {
         ticTacToe.play(2,0);
         assertEquals(GameStatus.PLAYER_1_WINS, ticTacToe.getGameStatus());
     }
+
+    @Test
+    public void check_that_x_wins_if_3_in_a_row_in_backwards_diagonal() {
+        ticTacToe.play(0,0);
+        ticTacToe.play(0,1);
+        ticTacToe.play(1,1);
+        ticTacToe.play(1,0);
+        ticTacToe.play(2,2);
+        assertEquals(GameStatus.PLAYER_1_WINS, ticTacToe.getGameStatus());
+    }
+
+    @Test
+    public void check_that_x_wins_if_3_in_a_row_in_forward_diagonal() {
+        ticTacToe.play(0,2);
+        ticTacToe.play(0,1);
+        ticTacToe.play(1,1);
+        ticTacToe.play(1,0);
+        ticTacToe.play(2,0);
+        assertEquals(GameStatus.PLAYER_1_WINS, ticTacToe.getGameStatus());
+    }
+
+    @Test
+    public void check_that_0_wins_if_3_in_a_row() {
+        ticTacToe.play(2,2);
+        ticTacToe.play(0,0);
+        ticTacToe.play(1,1);
+        ticTacToe.play(0,1);
+        ticTacToe.play(2,0);
+        ticTacToe.play(0,2);
+
+        assertEquals(GameStatus.PLAYER_2_WINS, ticTacToe.getGameStatus());
+    }
 }
