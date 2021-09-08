@@ -112,4 +112,19 @@ public class TicTacToeTest {
 
         assertEquals(GameStatus.PLAYER_2_WINS, ticTacToe.getGameStatus());
     }
+
+    @Test
+    public void check_for_draw_if_all_spots_are_used() {
+        ticTacToe.play(0,0);
+        ticTacToe.play(0,1);
+        ticTacToe.play(0,2);
+        ticTacToe.play(1,0);
+        ticTacToe.play(1,1);
+        ticTacToe.play(2,0);
+        ticTacToe.play(1,2);
+        ticTacToe.play(2,2);
+        ticTacToe.play(2,1);
+
+        assertEquals(GameStatus.DRAW, ticTacToe.getGameStatus());
+    }
 }
