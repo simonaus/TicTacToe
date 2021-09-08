@@ -1,12 +1,14 @@
 public class TicTacToe {
-    private String[][] position = {{"","",""},{"","",""},{"","",""}};
-    private String currentPlayer = "x";
+    private PositionStatus[][] position = {{PositionStatus.EMPTY,PositionStatus.EMPTY,PositionStatus.EMPTY},
+                                            {PositionStatus.EMPTY,PositionStatus.EMPTY,PositionStatus.EMPTY},
+                                             {PositionStatus.EMPTY,PositionStatus.EMPTY,PositionStatus.EMPTY}};
+    private PositionStatus currentPlayer = PositionStatus.PLAYER_1;
     private GameStatus gameStatus = GameStatus.IN_PROGRESS;
 
     public void play(int row, int column) {
-        if (this.position[row][column].equals("")) {
+        if (this.position[row][column] == PositionStatus.EMPTY) {
             this.position[row][column] = this.currentPlayer;
-            this.currentPlayer = this.currentPlayer.equals("x") ? "o" : "x";
+            this.currentPlayer = this.currentPlayer == PositionStatus.PLAYER_1 ? PositionStatus.PLAYER_2 : PositionStatus.PLAYER_1;
             if (this.position[row][0].equals(this.position[row][1]) && this.position[row][1].equals(this.position[row][2])) {
                 this.gameStatus = GameStatus.PLAYER_1_WINS;
             }
@@ -16,7 +18,7 @@ public class TicTacToe {
         }
     }
 
-    public String[][] getPosition() {
+    public PositionStatus[][] getPosition() {
         return this.position;
     }
 

@@ -1,55 +1,58 @@
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.BeforeEach;
 
 import static org.junit.Assert.assertEquals;
 
 public class TicTacToeTest {
 
+    TicTacToe ticTacToe;
+    PositionStatus[][] mockPositions;
+
+    @BeforeEach
+    public void init() {
+        ticTacToe = new TicTacToe();
+        mockPositions = new PositionStatus[][]{{PositionStatus.EMPTY, PositionStatus.EMPTY, PositionStatus.EMPTY},
+                                                {PositionStatus.EMPTY, PositionStatus.EMPTY, PositionStatus.EMPTY},
+                                                 {PositionStatus.EMPTY, PositionStatus.EMPTY, PositionStatus.EMPTY}};
+    }
+
     @Test
     public void save_position_as_x_after_firs_move() {
-        TicTacToe ticTacToe = new TicTacToe();
         ticTacToe.play(0,0);
-        String[][] mockPositions = {{"","",""},{"","",""},{"","",""}};
-        mockPositions[0][0] = "x";
+        mockPositions[0][0] = PositionStatus.PLAYER_1;
         assertEquals(mockPositions, ticTacToe.getPosition());
     }
 
     @Test
     public void save_position_as_x_after_two_moves() {
-        TicTacToe ticTacToe = new TicTacToe();
         ticTacToe.play(0,0);
         ticTacToe.play(1,0);
-        String[][] mockPositions = {{"","",""},{"","",""},{"","",""}};
-        mockPositions[0][0] = "x";
-        mockPositions[1][0] = "o";
+        mockPositions[0][0] = PositionStatus.PLAYER_1;
+        mockPositions[1][0] = PositionStatus.PLAYER_2;
         assertEquals(mockPositions, ticTacToe.getPosition());
     }
 
     @Test
     public void save_position_as_after_three_moves() {
-        TicTacToe ticTacToe = new TicTacToe();
         ticTacToe.play(0,0);
         ticTacToe.play(1,0);
         ticTacToe.play(0,1);
-        String[][] mockPositions = {{"","",""},{"","",""},{"","",""}};
-        mockPositions[0][0] = "x";
-        mockPositions[1][0] = "o";
-        mockPositions[0][1] = "x";
+        mockPositions[0][0] = PositionStatus.PLAYER_1;
+        mockPositions[1][0] = PositionStatus.PLAYER_2;
+        mockPositions[0][1] = PositionStatus.PLAYER_1;
         assertEquals(mockPositions, ticTacToe.getPosition());
     }
 
     @Test
     public void doesnt_allow_pieces_to_be_placed_in_used_positions() {
-        TicTacToe ticTacToe = new TicTacToe();
         ticTacToe.play(0,0);
         ticTacToe.play(0,0);
-        String[][] mockPositions = {{"","",""},{"","",""},{"","",""}};
-        mockPositions[0][0] = "x";
+        mockPositions[0][0] = PositionStatus.PLAYER_1;
         assertEquals(mockPositions, ticTacToe.getPosition());
     }
 
     @Test
     public void check_that_x_wins_if_3_in_a_row() {
-        TicTacToe ticTacToe = new TicTacToe();
         ticTacToe.play(0,0);
         ticTacToe.play(1,0);
         ticTacToe.play(0,1);
@@ -60,7 +63,6 @@ public class TicTacToeTest {
 
     @Test
     public void check_that_x_wins_if_3_in_a_row_in_second_row() {
-        TicTacToe ticTacToe = new TicTacToe();
         ticTacToe.play(1,0);
         ticTacToe.play(0,0);
         ticTacToe.play(1,1);
@@ -71,7 +73,6 @@ public class TicTacToeTest {
 
     @Test
     public void check_that_x_wins_if_3_in_a_row_in_first_column() {
-        TicTacToe ticTacToe = new TicTacToe();
         ticTacToe.play(0,0);
         ticTacToe.play(0,1);
         ticTacToe.play(1,0);
